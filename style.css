@@ -280,6 +280,12 @@ a {
     color: #ccc;
 }
 
+.project-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
 .project-link {
     font-size: 1.1rem;
     font-weight: 500;
@@ -293,6 +299,19 @@ a {
 .project-link:hover {
     gap: 15px;
     opacity: 0.8;
+}
+
+.project-link.secondary {
+    font-size: 0.95rem;
+    border-bottom: 1px solid var(--text-secondary);
+    color: var(--text-secondary);
+}
+
+.project-link.secondary:hover {
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+    gap: 10px;
+    /* Reset header gap expansion */
 }
 
 /* Visual Cards */
@@ -428,6 +447,66 @@ a {
     to {
         opacity: 1;
     }
+}
+
+/* Privacy Policy Page Styles */
+.privacy-hero {
+    padding: 200px 0 100px;
+    background: var(--bg-color);
+}
+
+.privacy-hero h1 {
+    font-size: clamp(3rem, 8vw, 6rem);
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-container {
+    max-width: 800px;
+    /* Readability width */
+    margin: 0 auto;
+}
+
+.policy-section {
+    margin-bottom: 120px;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 60px;
+}
+
+.policy-section:last-child {
+    border-bottom: none;
+}
+
+.policy-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.policy-section h3 {
+    font-size: 1.5rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-family: var(--font-body);
+    /* More readable heading for sub-sections */
+}
+
+.last-updated {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.policy-section p {
+    color: #ccc;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
 }
 
 /* Responsive */
