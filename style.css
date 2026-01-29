@@ -1,0 +1,455 @@
+:root {
+    --bg-color: #050505;
+    --text-primary: #ffffff;
+    --text-secondary: #888888;
+    --accent-glow: rgba(255, 255, 255, 0.15);
+    --border-light: rgba(255, 255, 255, 0.1);
+
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --container-width: 1400px;
+    --spacing-section: 160px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 0.9;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Nav */
+.minimal-nav {
+    padding: 40px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    mix-blend-mode: difference;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.5px;
+}
+
+.nav-content nav ul {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    list-style: none;
+}
+
+.btn-outline {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-size: 0.9rem;
+}
+
+.btn-outline:hover {
+    background: white;
+    color: black;
+    border-color: white;
+}
+
+/* Hero */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    /* Sticky to allow overlap */
+    top: 0;
+    z-index: 0;
+    padding-top: 60px;
+    /* offset for nav */
+}
+
+.hero-content h1 {
+    font-size: clamp(4rem, 12vw, 10rem);
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-content .line {
+    display: block;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-content .line:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.hero-content .line:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.hero-content .line:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    margin-top: 40px;
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 500px;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.8s forwards;
+}
+
+.hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vh;
+    background: radial-gradient(circle, rgba(100, 100, 255, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Projects Stack Effect */
+.projects-section {
+    padding: 0;
+    /* Remove padding as rows handle spacing */
+    position: relative;
+    z-index: 1;
+    /* Sit above hero */
+}
+
+.section-label {
+    /* Make label sticky too or just part of the flow above the first card */
+    padding: 40px 40px;
+    background: var(--bg-color);
+    /* Cover hero when scrolling */
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.section-label span {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+}
+
+.projects-list {
+    display: flex;
+    flex-direction: column;
+    /* Remove gap, spacing handled by height/stickiness */
+}
+
+.project-row {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    /* Full screen page feel */
+    background-color: var(--bg-color);
+    /* Solid bg to obscure previous items */
+    display: flex;
+    /* Centered content */
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+    /* Shadow to differentiate layers */
+    padding: 0 40px;
+    /* Keep container padding */
+
+    /* Internal Grid Layout */
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* Specific z-indices to ensure correct stacking order (optional but safe) */
+.project-row:nth-child(1) {
+    z-index: 10;
+}
+
+.project-row:nth-child(2) {
+    z-index: 11;
+}
+
+.project-row:nth-child(3) {
+    z-index: 12;
+}
+
+.project-row:nth-child(4) {
+    z-index: 13;
+}
+
+.project-row.reverse {
+    direction: rtl;
+}
+
+.project-row.reverse>* {
+    direction: ltr;
+}
+
+.project-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.project-number {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: #222;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.project-info h2 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.project-desc {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    max-width: 400px;
+    line-height: 1.7;
+}
+
+.project-tags {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.project-tags span {
+    border: 1px solid var(--border-light);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    color: #ccc;
+}
+
+.project-link {
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid white;
+}
+
+.project-link:hover {
+    gap: 15px;
+    opacity: 0.8;
+}
+
+/* Visual Cards */
+.project-visual {
+    width: 100%;
+    /* Adjust visual fit for 100vh container */
+    height: 60vh;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+    /* Add depth to the card */
+}
+
+.visual-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #050505;
+    /* Deep black to match logo background */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-visual:hover .visual-card {
+    transform: scale(1.03);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.project-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Fill the card area, assuming logos are high res/designed well */
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.project-visual:hover .project-logo {
+    opacity: 1;
+}
+
+/* Footer CTA - Make sure it stacks on top of the last card */
+.footer-cta {
+    min-height: 80vh;
+    /* Make it substantial */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-color);
+    position: relative;
+    /* Default flow sits on top of sticky if z-index is higher */
+    z-index: 20;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.huge-link {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.huge-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 4px;
+    background: white;
+    transition: width 0.4s ease;
+    margin: 0 auto;
+}
+
+.huge-link:hover::after {
+    width: 100%;
+}
+
+/* Footer Box */
+.box-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 60px 40px;
+    border-top: 1px solid var(--border-light);
+}
+
+.footer-label {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-links a {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.social-links a:hover {
+    color: var(--text-secondary);
+}
+
+/* Animations */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+
+    .project-row,
+    .project-row.reverse {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        direction: ltr;
+    }
+
+    .project-visual {
+        order: -1;
+        /* Image first on mobile */
+    }
+
+    .project-number {
+        display: none;
+    }
+
+    .hero-content h1 {
+        line-height: 1;
+    }
+}
